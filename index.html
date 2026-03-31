@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Allergenenzoeker</title>
 <style>
 html,body{margin:0;padding:0;background:#111111;color:#fffffffff}
@@ -13,9 +13,9 @@ html,body{margin:0;padding:0;background:#111111;color:#fffffffff}
   line-height:1.45 !important;
   color:#ffffff !important;
 }
-#aj-app{min-height:100vh}
+#aj-app{min-height:100dvh}
 .wrap{max-width:860px;margin:0 auto;padding:28px 16px 48px}
-.hero{min-height:42vh;display:flex;align-items:center;justify-content:center}
+.hero{min-height:38dvh;display:flex;align-items:center;justify-content:center}
 .hero-inner{width:100%;max-width:720px}
 .title{margin:0 0 18px;text-align:center;font-size:28px;font-weight:600;color:#fffffffff}
 .search-row{display:flex;gap:10px;align-items:center}
@@ -280,7 +280,7 @@ function matchesSmartTerm(component, term) {
   if (variants) {
     return variants.some(alias => {
       const nAlias = normalize(alias);
-      return containsWholeTerm(iBag, nAlias) || iBag.includes(nAlias);
+      return containsWholeTerm(iBag, nAlias) || new RegExp("(^|\\s)" + escapeRegex(nAlias) + "(?=$|\\s)").test(iBag);
     });
   }
   return containsWholeTerm(iBag, term);
@@ -438,11 +438,15 @@ function toggleDetail(id) {
   el.open = !el.open;
 }
 
-document.getElementById("searchBtn").addEventListener("click", renderMinimal);
+document.getElementById("searchBtn").addEventListener("click", () => {
+  renderMinimal();
+  if (document.activeElement) document.activeElement.blur();
+});
 document.getElementById("q").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
     renderMinimal();
+    if (document.activeElement) document.activeElement.blur();
   }
 });
 </script>
