@@ -402,15 +402,14 @@ function renderMinimal() {
     return;
   }
 
-  let filtered = DATA.map(dish => {
-    const matchingComponents = dish.components.filter(c => terms.every(t => matchesSmartTerm(c, t)));
+  // Bij "halal" tonen we juist het niet-halal vlees dat je NIET mag serveren.
+  const isHalal = terms.includes("halal");
+  const filtered = DATA.map(dish => {
+    const matchingComponents = isHalal
+      ? dish.components.filter(c => matchesSmartTerm(c, "vlees") && !matchesSmartTerm(c, "halal"))
+      : dish.components.filter(c => terms.every(t => matchesSmartTerm(c, t)));
     return {...dish, matchingComponents};
   }).filter(dish => dish.matchingComponents.length > 0);
-
-  // Halal: sluit gerechten met niet-halal vlees uit
-  if (terms.includes("halal")) {
-    filtered = filtered.filter(dish => !dish.components.some(c => matchesSmartTerm(c, "vlees") && !matchesSmartTerm(c, "halal")));
-  }
 
   shellEl.classList.remove("hidden");
   metaEl.textContent = `${filtered.length} gerecht(en) gevonden`;
@@ -438,7 +437,7 @@ function renderMinimal() {
           </button>
         </div>
         <div class="card-main">
-          <p class="label">${terms.includes("halal") ? "Halal — dit kun je serveren:" : "Niet serveren:"}</p>
+          <p class="label">Niet serveren:</p>
           ${hitList}
         </div>
         <details id="detail-${idx}">
