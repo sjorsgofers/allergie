@@ -420,7 +420,7 @@ function renderMinimal() {
   }
 
   resultsEl.innerHTML = filtered.map((dish, idx) => {
-    const hitList = `<ul class="hit-list">${dish.matchingComponents.map(c => `<li><strong>${escapeHtml(c.name)}</strong></li>`).join("")}</ul>`;
+    const hitList = `<ul class="hit-list">${dish.matchingComponents.map(c => `<li><strong>${escapeHtml(c.name)}</strong>${matchesSmartTerm(c, "halal") ? ' <span style="color:#c8a45b;font-weight:600">(halal)</span>' : ''}</li>`).join("")}</ul>`;
     const detailHtml = dish.matchingComponents.map(c => {
       const ingList = (c.ingredients || []).length
         ? `<ul>${c.ingredients.map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`
