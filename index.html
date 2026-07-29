@@ -292,6 +292,9 @@ function matchesSmartTerm(component, term) {
   };
   for (const key in ALLERGEN_GROUPS) collect(key, ALLERGEN_GROUPS[key]);
   for (const key in INGREDIENT_VARIANTS) collect(key, INGREDIENT_VARIANTS[key]);
+  if (term === "vlees" || term === "vleeswaren") {
+    ["vlees","rundvlees","varkensvlees","kippenvlees","kalfsvlees","gehakt","rund","varken","kip","kalfsmuis","bacon","spek","buikspek","ham","serranoham","fuet","worst","knakworst","hotdog","pastrami","runderpastrami","shortrib","stoofvlees","draadjesvlees","steak","pepersteak","schnitzel","kipsate","kippenhaasje","carpaccio","beef","ossenhaas","sucade","ribfingers"].forEach(m => targets.add(normalize(m)));
+  }
   for (const t of targets) {
     if (t && containsWholeTerm(bag, t)) return true;
   }
@@ -399,10 +402,15 @@ function renderMinimal() {
     return;
   }
 
-  const filtered = DATA.map(dish => {
+  let filtered = DATA.map(dish => {
     const matchingComponents = dish.components.filter(c => terms.every(t => matchesSmartTerm(c, t)));
     return {...dish, matchingComponents};
   }).filter(dish => dish.matchingComponents.length > 0);
+
+  // Halal: sluit gerechten met niet-halal vlees uit
+  if (terms.includes("halal")) {
+    filtered = filtered.filter(dish => !dish.components.some(c => matchesSmartTerm(c, "vlees") && !matchesSmartTerm(c, "halal")));
+  }
 
   shellEl.classList.remove("hidden");
   metaEl.textContent = `${filtered.length} gerecht(en) gevonden`;
@@ -430,7 +438,7 @@ function renderMinimal() {
           </button>
         </div>
         <div class="card-main">
-          <p class="label">Niet serveren:</p>
+          <p class="label">${terms.includes("halal") ? "Halal — dit kun je serveren:" : "Niet serveren:"}</p>
           ${hitList}
         </div>
         <details id="detail-${idx}">

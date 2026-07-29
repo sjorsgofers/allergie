@@ -727,7 +727,8 @@
           "worchester",
           "olijfolie",
           "specerijen",
-          "komkommer"
+          "komkommer",
+          "Halal"
         ],
         "allergens": [
           "Mosterd",
@@ -936,7 +937,8 @@
         "dbFound": true,
         "ingredients": [
           "Rundvlees",
-          "Hoisin"
+          "Hoisin",
+          "Halal"
         ],
         "allergens": []
       },
@@ -1175,7 +1177,8 @@
         "resolvedName": "Carpaccio",
         "dbFound": true,
         "ingredients": [
-          "Rundvlees"
+          "Rundvlees",
+          "Halal"
         ],
         "allergens": []
       },
@@ -1475,7 +1478,8 @@
           "oregano",
           "gistextract",
           "kleurstoffen: E100 en E160c",
-          "natuurlijk aroma"
+          "natuurlijk aroma",
+          "Halal"
         ],
         "allergens": [
           "Gluten",
@@ -2013,7 +2017,8 @@
           "oregano",
           "gistextract",
           "kleurstoffen: E100 en E160c",
-          "natuurlijk aroma"
+          "natuurlijk aroma",
+          "Halal"
         ],
         "allergens": [
           "Gluten",
@@ -2864,7 +2869,8 @@
           "gember",
           "paprika",
           "knoflook",
-          "natuurlijk gemberaroma"
+          "natuurlijk gemberaroma",
+          "Halal"
         ],
         "allergens": [
           "Gluten",
@@ -3561,7 +3567,8 @@
         "resolvedName": "Ossenhaasspiesje",
         "dbFound": true,
         "ingredients": [
-          "Soja – Selderij – Zwaveldioxide – Sulfieten - E621 - Paprika - Gember - Ui - Knoflook - Koriander"
+          "Soja – Selderij – Zwaveldioxide – Sulfieten - E621 - Paprika - Gember - Ui - Knoflook - Koriander",
+          "Halal"
         ],
         "allergens": [
           "Soja",
@@ -4080,7 +4087,9 @@
           "zout",
           "knoflook",
           "verdikkingsmiddel: (E460)",
-          "kruiden en specerijen"
+          "kruiden en specerijen",
+          "Halal",
+          "kippenvlees"
         ],
         "allergens": [
           "Gluten",
@@ -4723,7 +4732,8 @@
           "dextrose",
           "Antioxidant: E331",
           "Xylose",
-          "zuurteregelaar: E500"
+          "zuurteregelaar: E500",
+          "Halal"
         ],
         "allergens": [
           "Melk",
