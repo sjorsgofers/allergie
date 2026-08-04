@@ -1924,7 +1924,9 @@
           "Conserveermiddel E211",
           "Kruiden en specerijen"
         ],
-        "allergens": []
+        "allergens": [
+          "Gluten"
+        ]
       },
       {
         "name": "Piccalilly saus",
@@ -3549,7 +3551,9 @@
           "Conserveermiddel E211",
           "Kruiden en specerijen"
         ],
-        "allergens": []
+        "allergens": [
+          "Gluten"
+        ]
       }
     ],
     "allergens": [
